@@ -49,7 +49,6 @@ public class ProductDAOImpl implements ProductDAO {
 	public List<Product> showAllInList() {
 		String sql = "SELECT * FROM dbo.shoppinglist_table";
 		RowMapper<Product> mapper = new ProductRowMapper();
-
 		List<Product> products = jdbcT.query(sql, mapper);
 
 		return products;

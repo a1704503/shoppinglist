@@ -13,7 +13,6 @@ public class Product {
 	private String energy_kcal_100g;
 
 	// For H2-inmemoryDB
-	private ShoppingList shoppingList;
 
 	// Constructors for adding a product
 	public Product() {
@@ -91,20 +90,6 @@ public class Product {
 		this.energy_kcal_100g = energy_kcal_100g;
 	}
 
-	public Product(Long product_id, String product_name, String generic_name, String quantity, String brands,
-			String ingredients_text, String image_small_url, String energy_kcal_100g, ShoppingList shoppingList) {
-		super();
-		this.product_id = product_id;
-		this.product_name = product_name;
-		this.generic_name = generic_name;
-		this.quantity = quantity;
-		this.brands = brands;
-		this.ingredients_text = ingredients_text;
-		this.image_small_url = image_small_url;
-		this.energy_kcal_100g = energy_kcal_100g;
-		this.shoppingList = shoppingList;
-	}
-
 	public Long getProduct_id() {
 		return product_id;
 	}
@@ -167,14 +152,6 @@ public class Product {
 
 	public void setEnergy_kcal_100g(String energy_kcal_100g) {
 		this.energy_kcal_100g = energy_kcal_100g;
-	}
-
-	public ShoppingList getShoppingList() {
-		return shoppingList;
-	}
-
-	public void setShoppingList(ShoppingList shoppingList) {
-		this.shoppingList = shoppingList;
 	}
 
 }

@@ -32,12 +32,14 @@ public class ShoppinglistController {
 	@GetMapping("/remove/{id}")
 	public String removeItemFromShoppingList(@PathVariable("id") Long product_id) {
 		productDAO.deleteFromListById(product_id);
+
 		return "redirect:/shoppinglist";
 	}
 
 	@GetMapping(value = "/clearlist")
 	public String clearShoppingList() {
 		productDAO.clearList();
+
 		return "redirect:/shoppinglist";
 	}
 
@@ -47,6 +49,7 @@ public class ShoppinglistController {
 	@GetMapping(value = "/index")
 	public String emptyProduct(Model model) {
 		model.addAttribute("product", new Product());
+
 		return "index";
 	}
 
@@ -54,12 +57,14 @@ public class ShoppinglistController {
 	public String searchProduct(@ModelAttribute Product product, Model model) {
 		List<Product> products = productDAO.findByName(product);
 		model.addAttribute("listofproducts", products);
+
 		return "index";
 	}
 
 	@GetMapping(value = "/addproduct/{id}")
 	public String addProductToList(@PathVariable("id") Long product_id) {
 		productDAO.addToListById(product_id);
+
 		return "redirect:/index";
 	}
 
