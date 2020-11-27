@@ -16,6 +16,9 @@
 						<input type="text" th:field="*{product_name}" />
 						<input type="submit" value="Search" />
 				</form>
+				<form th:action="@{/logout}" method="post"> <!-- Sign Out form -->
+					<input type="submit" value="Sign Out"/> 
+				</form>
 			</div>
 			<div>
 				<table class="table table-bordered">

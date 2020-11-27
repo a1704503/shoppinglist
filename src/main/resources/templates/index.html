@@ -7,7 +7,12 @@
 </head>
 <body>
 	<main>
-		<h1>ShoppingList</h1><a class="btn btn-primary" th:href="@{/shoppinglist}">Current list</a>
+		<h1>ShoppingList</h1>
+		<a class="btn btn-primary" th:href="@{/shoppinglist}">Current list</a>
+		
+		<form th:action="@{/logout}" method="post"> <!-- Sign Out form -->
+			<input type="submit" value="Sign Out"/> 
+		</form>
 		<div>
 		     <form th:object= ${product} th:action="@{/search}" action="#" method="get">
 				  	<label for="name">Search for a product: </label>

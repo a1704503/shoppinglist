@@ -33,14 +33,14 @@ public class ShoppinglistController {
 	public String removeItemFromShoppingList(@PathVariable("id") Long product_id) {
 		productDAO.deleteFromListById(product_id);
 
-		return "redirect:/shoppinglist";
+		return "redirect:../shoppinglist";
 	}
 
 	@GetMapping(value = "/clearlist")
 	public String clearShoppingList() {
 		productDAO.clearList();
 
-		return "redirect:/shoppinglist";
+		return "redirect:../shoppinglist";
 	}
 
 	// PRODUCT - SEARCH
