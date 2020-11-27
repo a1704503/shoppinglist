@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Search</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" th:href="@{css/bootstrap.css}" />
+</head>
+<body>
+	<main>
+		<h1>ShoppingList</h1><a class="btn btn-primary" th:href="@{/shoppinglist}">Current list</a>
+		<div>
+		     <form th:object= ${product} th:action="@{/search}" action="#" method="get">
+				  	<label for="name">Search for a product: </label>
+					<input type="text" th:field="*{product_name}" />
+					<input type="submit" value="Search" />
+			</form>
+		</div>
+		<table class="table table-bordered">
+			<tr>
+					<th>Product Name</th>
+					<th>Quantity</th>
+					<th>Brand</th>
+					<th>Ingredients</th>
+					<th>Image</th>
+					<th>energy kcal/100g</th>
+			</tr>
+		
+			<tr th:each="product : ${listofproducts}" th:if="${product != null}">
+					<td th:text="${product.product_name}" ></td>
+					<td th:text="${product.quantity}" ></td>
+					<td th:text="${product.brands}" ></td>
+					<td th:text="${product.ingredients_text}" ></td>
+					<td><img th:src="${product.image_small_url}"/></td>
+					<td th:text="${product.energy_kcal_100g}" ></td>
+					<td><a class="btn btn-success"  th:href="@{/addproduct/{id}(id=${product.product_id})}" th:if="${product.product_id != null}">Add</a></td>
+			</tr>
+		</table>
+	</main>
+</body>
+</html>

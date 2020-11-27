@@ -1,0 +1,44 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Shoppinglist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css" th:href="@{css/bootstrap.css}" />
+</head>
+<body>
+	<main>
+		<h1>ShoppingList</h1>
+		
+	    <h2>Current List:</h2>
+		    <div>
+			     <form th:object= ${product} th:action="@{/search}" action="#" method="get">
+					  	<label for="name">Search for a product: </label>
+						<input type="text" th:field="*{product_name}" />
+						<input type="submit" value="Search" />
+				</form>
+			</div>
+			<div>
+				<table class="table table-bordered">
+						<tr>
+								<th>Product Name</th>
+								<th>Quantity</th>
+								<th>Brand</th>
+								<th>Ingredients</th>
+								<th>Image</th>
+								<th>energy kcal/100g</th>
+						</tr>
+				
+						<tr th:each="listitem : ${shoppinglist}" th:if="${listitem != null}">
+								<td th:text="${listitem.product_name}" ></td>
+								<td th:text="${listitem.quantity}" ></td>
+								<td th:text="${listitem.brands}" ></td>
+								<td th:text="${listitem.ingredients_text}" ></td>
+								<td><img th:src="${listitem.image_small_url}"/></td>
+								<td th:text="${listitem.energy_kcal_100g}" ></td>
+								<td><a class="btn btn-warning"  th:href="@{/remove/{id}(id=${listitem.product_id})}" th:if="${listitem.product_id != null}">Remove</a></td>
+						</tr>
+				</table>
+			</div>
+	 </main>
+</body>
+</html>

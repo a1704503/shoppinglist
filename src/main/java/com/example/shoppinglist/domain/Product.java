@@ -1,19 +1,8 @@
 package com.example.shoppinglist.domain;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-
-import org.springframework.data.annotation.Id;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 public class Product {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	private Long product_id;
 
 	private String product_name;
 	private String generic_name;
@@ -21,19 +10,107 @@ public class Product {
 	private String brands;
 	private String ingredients_text;
 	private String image_small_url;
-	private int energy_kcal_100g;
+	private String energy_kcal_100g;
 
-	@ManyToOne
-	@JsonIgnore
-	@JoinColumn(name = "slistId")
+	// For H2-inmemoryDB
 	private ShoppingList shoppingList;
 
-	public Long getId() {
-		return id;
+	// Constructors for adding a product
+	public Product() {
+		super();
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public Product(Long product_id) {
+		super();
+		this.product_id = product_id;
+	}
+
+	public Product(Long product_id, String product_name) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+	}
+
+	public Product(Long product_id, String product_name, String generic_name) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.generic_name = generic_name;
+	}
+
+	public Product(Long product_id, String product_name, String generic_name, String quantity) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.generic_name = generic_name;
+		this.quantity = quantity;
+	}
+
+	public Product(Long product_id, String product_name, String generic_name, String quantity, String brands) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.generic_name = generic_name;
+		this.quantity = quantity;
+		this.brands = brands;
+	}
+
+	public Product(Long product_id, String product_name, String generic_name, String quantity, String brands,
+			String ingredients_text) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.generic_name = generic_name;
+		this.quantity = quantity;
+		this.brands = brands;
+		this.ingredients_text = ingredients_text;
+	}
+
+	public Product(Long product_id, String product_name, String generic_name, String quantity, String brands,
+			String ingredients_text, String image_small_url) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.generic_name = generic_name;
+		this.quantity = quantity;
+		this.brands = brands;
+		this.ingredients_text = ingredients_text;
+		this.image_small_url = image_small_url;
+	}
+
+	public Product(Long product_id, String product_name, String generic_name, String quantity, String brands,
+			String ingredients_text, String image_small_url, String energy_kcal_100g) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.generic_name = generic_name;
+		this.quantity = quantity;
+		this.brands = brands;
+		this.ingredients_text = ingredients_text;
+		this.image_small_url = image_small_url;
+		this.energy_kcal_100g = energy_kcal_100g;
+	}
+
+	public Product(Long product_id, String product_name, String generic_name, String quantity, String brands,
+			String ingredients_text, String image_small_url, String energy_kcal_100g, ShoppingList shoppingList) {
+		super();
+		this.product_id = product_id;
+		this.product_name = product_name;
+		this.generic_name = generic_name;
+		this.quantity = quantity;
+		this.brands = brands;
+		this.ingredients_text = ingredients_text;
+		this.image_small_url = image_small_url;
+		this.energy_kcal_100g = energy_kcal_100g;
+		this.shoppingList = shoppingList;
+	}
+
+	public Long getProduct_id() {
+		return product_id;
+	}
+
+	public void setProduct_id(Long product_id) {
+		this.product_id = product_id;
 	}
 
 	public String getProduct_name() {
@@ -84,11 +161,11 @@ public class Product {
 		this.image_small_url = image_small_url;
 	}
 
-	public int getEnergy_kcal_100g() {
+	public String getEnergy_kcal_100g() {
 		return energy_kcal_100g;
 	}
 
-	public void setEnergy_kcal_100g(int energy_kcal_100g) {
+	public void setEnergy_kcal_100g(String energy_kcal_100g) {
 		this.energy_kcal_100g = energy_kcal_100g;
 	}
 
