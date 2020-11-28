@@ -22,7 +22,7 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 
 	// Find matching pairs with wildcards from DB
-	public List<Product> findByName(Product productname) {
+	public List<Product> findByNameProductlist(Product productname) {
 		String sql = "SELECT * FROM dbo.products_table WHERE product_name LIKE CONCAT('%', ?, '%')";
 		Object[] parameters = new Object[] { productname.getProduct_name() };
 		RowMapper<Product> mapper = new ProductRowMapper();
@@ -31,22 +31,39 @@ public class ProductDAOImpl implements ProductDAO {
 		return product;
 	}
 
+	public List<Product> findAllProductlist() {
+		String sql = "SELECT * FROM dbo.products_table";
+		RowMapper<Product> mapper = new ProductRowMapper();
+		List<Product> products = jdbcT.query(sql, mapper);
+
+		return products;
+	}
+
+	public List<Product> findByIdProductlist(long id) {
+		String sql = "SELECT * FROM dbo.products_table WHERE product_id = ?";
+		Object[] parameters = new Object[] { id };
+		RowMapper<Product> mapper = new ProductRowMapper();
+
+		List<Product> product = jdbcT.query(sql, parameters, mapper);
+		return product;
+	}
+
 	// Find & add to shoppinglist.dbo -list
-	public void addToListById(long id) {
+	public void addToShoppinglistById(long id) {
 		String sql = "INSERT INTO dbo.shoppinglist_table SELECT * FROM dbo.products_table WHERE product_id = ? ";
 		Object[] parameters = new Object[] { id };
 
 		jdbcT.update(sql, parameters);
 	}
 
-	public void deleteFromListById(long id) {
+	public void deleteFromShoppinglistById(long id) {
 		String sql = "DELETE FROM dbo.shoppinglist_table WHERE product_id = ?";
 		Object[] parameters = new Object[] { id };
 
 		jdbcT.update(sql, parameters);
 	}
 
-	public List<Product> showAllInList() {
+	public List<Product> showAllInShoppinglist() {
 		String sql = "SELECT * FROM dbo.shoppinglist_table";
 		RowMapper<Product> mapper = new ProductRowMapper();
 		List<Product> products = jdbcT.query(sql, mapper);
@@ -54,7 +71,7 @@ public class ProductDAOImpl implements ProductDAO {
 		return products;
 	}
 
-	public void clearList() {
+	public void clearShoppinglist() {
 		String sql = "DELETE FROM dbo.shoppinglist_table";
 		jdbcT.update(sql);
 	}

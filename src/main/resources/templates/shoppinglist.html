@@ -8,19 +8,37 @@
 <body>
 	<main>
 		<h1>ShoppingList</h1>
-		
+		<div><br/></div>
 	    <h2>Current List:</h2>
-		    <div>
-			     <form th:object= ${product} th:action="@{/search}" action="#" method="get">
-					  	<label for="name">Search for a product: </label>
-						<input type="text" th:field="*{product_name}" />
-						<input type="submit" value="Search" />
-				</form>
-				<form th:action="@{/logout}" method="post"> <!-- Sign Out form -->
-					<input type="submit" value="Sign Out"/> 
-				</form>
+		    <div th:if="${!shoppinglist.isEmpty()}">
+				     <form th:object= ${product} th:action="@{/search}" action="#" method="get">
+						  	<label for="name">Search for a product: </label>
+							<input type="text" th:field="*{product_name}" />
+							<input type="submit" value="Search" />
+					</form>
+				
 			</div>
 			<div>
+				<form th:action="@{/logout}" method="post"> <!-- Sign Out form -->
+						<input type="submit" value="Sign Out"/> 
+				</form>
+			</div>
+			<div class="text text-right"><a class="btn btn-danger" th:href="@{/clearlist}">Clear Shoppinglist</a></div>
+			<div><br/></div>
+			<div class="text text-center" th:if="${shoppinglist.isEmpty()}"> <div><br/><br/></div>
+				<h1>Start by searching a product :)</h1>
+					<div><br/><br/></div>
+					<div th:if="${shoppinglist.isEmpty()}">
+					     <form th:object= ${product} th:action="@{/search}" action="#" method="get">
+							  	<label for="name">Search for a product: </label>
+								<input type="text" th:field="*{product_name}" />
+								<input type="submit" value="Search" />
+						</form>
+					
+					</div>
+			</div>
+			
+			<div class="text text-center" th:if="${shoppinglist!=null and !shoppinglist.isEmpty()}">
 				<table class="table table-bordered">
 						<tr>
 								<th>Product Name</th>

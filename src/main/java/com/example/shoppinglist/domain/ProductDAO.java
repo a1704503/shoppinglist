@@ -4,13 +4,21 @@ import java.util.List;
 
 public interface ProductDAO {
 
-	public List<Product> findByName(Product productname);
+	// Productlist
 
-	public void addToListById(long id);
+	public List<Product> findByNameProductlist(Product productname);
 
-	public void deleteFromListById(long id);
+	public List<Product> findAllProductlist();
 
-	public List<Product> showAllInList();
+	public List<Product> findByIdProductlist(long id);
 
-	public void clearList();
+	// Shoppinglist
+
+	public void addToShoppinglistById(long id);
+
+	public void deleteFromShoppinglistById(long id);
+
+	public List<Product> showAllInShoppinglist();
+
+	public void clearShoppinglist();
 }
